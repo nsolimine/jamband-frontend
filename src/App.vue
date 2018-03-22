@@ -2,16 +2,19 @@
   <div id="app">
     <Header></Header>
     <router-view/>
+    <Session></Session>
   </div>
 </template>
 
 <script>
 import Header from './components/header'
+import Session from './components/session'
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    Session
   }
 }
 </script>
