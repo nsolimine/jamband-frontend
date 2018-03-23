@@ -32,6 +32,10 @@ export default {
 
 <style>
 
+h2 {
+  color: #0586D0;
+}
+
 label {
   font-size: 1.5rem;
 }

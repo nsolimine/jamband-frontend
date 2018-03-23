@@ -36,6 +36,10 @@ export default {
 
 <style scoped>
 
+h2 {
+  color: #0586D0;
+}
+
 p {
   font-size: 1.25rem;
 }

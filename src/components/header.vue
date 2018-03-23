@@ -17,4 +17,8 @@ export default {
   border: 1px solid black;
 }
 
+h1 {
+  font-size: 3.5rem;
+  color: 	#0586D0;
+}
 </style>

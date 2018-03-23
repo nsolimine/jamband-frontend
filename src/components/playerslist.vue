@@ -54,6 +54,10 @@ export default {
 
 <style scoped>
 
+h2 {
+  color: #0586D0;
+}
+
 ul {
   margin: 0;
   padding: 0;
