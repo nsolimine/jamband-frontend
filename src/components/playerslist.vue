@@ -1,9 +1,10 @@
 <template>
   <div class="playersDiv">
     <ul id="players-list">
+      <h2>Players</h2>
       <li v-for="player in players" :key="players.id">
         <p>{{player.name}}</p>
-        <p>{{player.instrument}}</p>
+        <p>Instrument: {{player.instrument}}</p>
         <p>Do you sing? {{player.sing}}</p>
         <p>Time checked in {{player.created_at}}</p>
         <p>Do you have friends you'd like to play with? {{player.friends}}</p>
@@ -43,10 +44,8 @@ export default {
       })
   }
 }
-
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 ul {

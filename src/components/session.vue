@@ -1,5 +1,6 @@
 <template id="session">
   <ul class="sessionDiv">
+    <h2>Groups</h2>
     <li v-for="group in session" :key="session.id">
       <p>{{group.title}}</p>
       <p>{{group.date}}</p>

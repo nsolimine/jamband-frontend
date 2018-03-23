@@ -1,5 +1,8 @@
 <template id="Header">
-  <h1>jamBand</h1>
+  <div class="headerDiv">
+    <h1>jamBand</h1>
+    <h3>Organizing jam nights for the modern musician</h3>
+  </div>
 </template>
 
 <script>
@@ -9,5 +12,9 @@ export default {
 </script>
 
 <style scoped>
+
+.headerDiv {
+  border: 1px solid black;  
+}
 
 </style>
