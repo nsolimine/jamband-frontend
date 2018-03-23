@@ -2,9 +2,11 @@
   <ul class="sessionDiv">
     <h2>Groups</h2>
     <li v-for="group in session" :key="session.id">
-      <p>{{group.title}}</p>
-      <p>{{group.date}}</p>
-      <p>{{group.time}}</p>
+      <div class="sessionCard">
+        <p>{{group.title}}</p>
+        <p>{{group.date}}</p>
+        <p>{{group.time}}</p>
+      </div>
     </li>
   </ul>
 </template>
@@ -33,6 +35,18 @@ export default {
 </script>
 
 <style scoped>
+
+p {
+  font-size: 1.25rem;
+}
+
+.sessionCard {
+  border: 1px solid black;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+}
+
 ul {
   margin: 0;
   padding: 0;

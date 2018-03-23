@@ -47,13 +47,16 @@ export default {
 
 #app-addFormDiv {
   width: 33%;
+  padding: 1rem;
 }
 
 #app-playersDiv {
   width: 33%;
+  padding: 1rem;
 }
 
 #app-sessionDiv {
   width: 33%;
+  padding: 1rem;
 }
 </style>
