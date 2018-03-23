@@ -1,20 +1,31 @@
 <template>
   <div id="app">
     <Header></Header>
-    <router-view/>
-    <Session></Session>
+    <div id="features">
+      <div id="app-addFormDiv">
+        <addForm></addForm>
+      </div>
+      <div id="app-playersDiv">
+      <router-view/>
+    </div>
+    <div id="app-sessionDiv">
+      <Session></Session>
+    </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Header from './components/header'
 import Session from './components/session'
+import addForm from './components/addForm'
 
 export default {
   name: 'App',
   components: {
     Header,
-    Session
+    Session,
+    addForm
   }
 }
 </script>
@@ -25,7 +36,24 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  padding-top: 2rem;
+  color: #01A59B;
+}
+
+#features {
+  display: flex;
+  flex-direction: row;
+}
+
+#app-addFormDiv {
+  width: 33%;
+}
+
+#app-playersDiv {
+  width: 33%;
+}
+
+#app-sessionDiv {
+  width: 33%;
 }
 </style>
