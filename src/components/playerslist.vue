@@ -2,7 +2,7 @@
   <div class="playersDiv">
     <ul id="players-list">
       <h2>Players</h2>
-      <li v-for="player in players" :key="players.id">
+      <li v-for="player in players" :key='player.id'>
         <div class="playerCard">
           <p class="playerName">{{player.name}}</p>
           <p>Instrument: {{player.instrument}}</p>
@@ -24,6 +24,10 @@
               </div>
             </div>
           </div>
+          <div class="updateAndDelete">
+            <button type="button" class="btn btn-outline-primary">Update</button>
+            <button @click="remove(player.id)" type="button" class="btn btn-outline-secondary">Delete</button>
+          </div>
         </div>
       </li>
     </ul>
@@ -43,13 +47,23 @@ export default {
     fetch(apiURL)
       .then(response => response.json())
       .then(players => {
-        console.log(players)
         this.players = players.players.map(players => {
           return players
         })
       })
+  },
+  methods: {
+    remove (id) {
+      this.deletePlayer(id)
+    },
+    deletePlayer (index) {
+      return fetch('https://jambandbackend.herokuapp.com/players/' + index, {
+        method: 'DELETE'
+      })
+    }
   }
 }
+
 </script>
 
 <style scoped>

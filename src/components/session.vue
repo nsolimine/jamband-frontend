@@ -1,7 +1,7 @@
 <template id="session">
   <ul class="sessionDiv">
     <h2>Groups</h2>
-    <li v-for="group in session" :key="session.id">
+    <li v-for="group in session" :key="group.id">
       <div class="sessionCard">
         <p>{{group.title}}</p>
         <p>{{group.date}}</p>
@@ -24,7 +24,6 @@ export default {
     fetch(sessionURL)
       .then(response => response.json())
       .then(session => {
-        console.log(session)
         this.session = session.session.map(session => {
           return session
         })
