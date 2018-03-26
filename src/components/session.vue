@@ -16,16 +16,26 @@ export default {
   name: 'Session',
   data () {
     return {
-      session: []
+      session: [],
+      joined: []
     }
+    console.log(joined);
   },
   mounted () {
-    const sessionURL = 'https://jambandbackend.herokuapp.com/session'
+    const sessionURL = 'https://jambandbackend.herokuapp.com/' + 'session'
     fetch(sessionURL)
       .then(response => response.json())
       .then(session => {
         this.session = session.session.map(session => {
           return session
+        })
+      })
+    return fetch('https://jambandbackend.herokuapp.com/')
+      .then(response => response.json())
+      .then(joined => {
+        console.log(joined);
+        this.joined = joined.map(joined => {
+          return joined
         })
       })
   }

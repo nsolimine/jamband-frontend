@@ -43,8 +43,8 @@ export default {
     }
   },
   mounted () {
-    const apiURL = 'https://jambandbackend.herokuapp.com/players'
-    fetch(apiURL)
+    const playersAPI = 'https://jambandbackend.herokuapp.com/' + 'players'
+    fetch(playersAPI)
       .then(response => response.json())
       .then(players => {
         this.players = players.players.map(players => {
@@ -57,7 +57,7 @@ export default {
       this.deletePlayer(id)
     },
     deletePlayer (index) {
-      return fetch('https://jambandbackend.herokuapp.com/players/' + index, {
+      return fetch('https://jambandbackend.herokuapp.com/' + 'players/' + index, {
         method: 'DELETE'
       })
     }
