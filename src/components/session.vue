@@ -4,11 +4,14 @@
       <h2>Groups</h2>
       <li v-for="group in res" :key="group.id">
         <div class="sessionCard">
-          <p>{{group.title}}</p>
+          <h4>{{group.title}}</h4>
           <p>{{group.date}}</p>
           <p>{{group.time}}</p>
-          <div v-for="player in group.players" :key="player.id">
-            <h3>{{player.name}}</h3>
+          <div class="playerInfo" v-for="player in group.players" :key="player.id">
+            <p class="playerName">{{player.name}}</p>
+            <p>Instrument: {{player.instrument}}</p>
+            <p>Do you sing? {{player.sing}}<p>
+            <p>Time checked in: {{player.created_at}}</p>
           </div>
         </div>
       </li>
