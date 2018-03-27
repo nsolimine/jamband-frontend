@@ -10,8 +10,6 @@
           <div v-for="player in group.players" :key="player.id">
             <h3>{{player.name}}</h3>
           </div>
-
-
         </div>
       </li>
     </ul>
@@ -23,10 +21,7 @@ export default {
   name: 'Session',
   data () {
     return {
-      res: [],
-      player: [],
-      players: [],
-      single: []
+      res: []
     }
   },
   mounted () {
@@ -35,27 +30,8 @@ export default {
       .then(response => response.json())
       .then(res => {
         this.res = res.res.map(res => {
-          res.players.map(player => {
-            console.log(player)
-            return player
-          })
           return res
         })
-      })
-      .then(players => {
-        this.players = this.res.map(players => {
-          players = players.players
-          // console.log(players)
-          return players
-        })
-      })
-      .then(single => {
-        for (var i = 0; i < this.players.length; i++) {
-          this.players[i].map(single => {
-            // console.log(single)
-            return single
-          })
-        }
       })
   }
 }
