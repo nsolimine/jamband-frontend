@@ -7,14 +7,12 @@
           <p>{{group.title}}</p>
           <p>{{group.date}}</p>
           <p>{{group.time}}</p>
+          <div v-for="player in group.players" :key="player.id">
+            <h3>{{player.name}}</h3>
+          </div>
+
+
         </div>
-        <ul>
-          <h5>Players in this group</h5>
-          <li v-for="player in players" :key="player.id">
-            <div class="playerList">
-            </div>
-          </li>
-        </ul>
       </li>
     </ul>
   </div>
@@ -26,6 +24,7 @@ export default {
   data () {
     return {
       res: [],
+      player: [],
       players: [],
       single: []
     }
@@ -36,20 +35,24 @@ export default {
       .then(response => response.json())
       .then(res => {
         this.res = res.res.map(res => {
-          console.log(res)
+          res.players.map(player => {
+            console.log(player)
+            return player
+          })
           return res
         })
       })
       .then(players => {
         this.players = this.res.map(players => {
           players = players.players
-          console.log(players)
+          // console.log(players)
           return players
         })
       })
       .then(single => {
         for (var i = 0; i < this.players.length; i++) {
           this.players[i].map(single => {
+            // console.log(single)
             return single
           })
         }
@@ -73,7 +76,6 @@ p {
   border: 1px solid black;
   padding: 1rem 1rem 0 1rem;
   margin-bottom: 1rem;
-
 }
 
 ul {
