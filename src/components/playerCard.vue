@@ -77,7 +77,7 @@ export default {
         method: 'DELETE'
       })
     },
-    getPlayerGroups () {
+    getPlayerGroups (data) {
       return fetch('https://jambandbackend.herokuapp.com/session', {
         method: 'PUT',
         body: JSON.stringify(data),
@@ -88,7 +88,7 @@ export default {
         .then(res => res.json())
         .catch(error => console.error('Error:', error))
     },
-    handleUpdate () {
+    handleUpdate (event) {
       this.updatePlayerGroups(this.players)
       this.players = {
         name: '',
@@ -98,7 +98,7 @@ export default {
         session: ''
       }
     },
-    updatePlayerGroups () {
+    updatePlayerGroups (data) {
       return fetch('https://jambandbackend.herokuapp.com/session', {
         method: 'PUT',
         body: JSON.stringify(data),
