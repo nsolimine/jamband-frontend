@@ -40,7 +40,14 @@ export default {
       group3Toggle: false,
       group4Toggle: false,
       group5Toggle: false,
-      group6Toggle: false
+      group6Toggle: false,
+      players: {
+        name: '',
+        instrument: '',
+        sing: '',
+        created_at: '',
+        session: ''
+      }
     }
   },
   methods: {
@@ -69,6 +76,38 @@ export default {
       return fetch('https://jambandbackend.herokuapp.com/' + 'players/' + index, {
         method: 'DELETE'
       })
+    },
+    getPlayerGroups () {
+      return fetch('https://jambandbackend.herokuapp.com/session', {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      })
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+    },
+    handleUpdate () {
+      this.updatePlayerGroups(this.players)
+      this.players = {
+        name: '',
+        instrument: '',
+        sing: '',
+        created_at: '',
+        session: ''
+      }
+    },
+    updatePlayerGroups () {
+      return fetch('https://jambandbackend.herokuapp.com/session', {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      })
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
     }
   }
 }

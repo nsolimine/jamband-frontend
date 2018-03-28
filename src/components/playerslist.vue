@@ -28,30 +28,6 @@ export default {
           return players
         })
       })
-  },
-  methods: {
-    getPlayerGroups () {
-      return fetch('https://jambandbackend.herokuapp.com/session', {
-        method: 'PUT',
-        body: JSON.stringify(data),
-        headers: new Headers({
-          'Content-Type': 'application/json'
-        })
-      })
-        .then(res => res.json())
-        .catch(error => console.error('Error:', error))
-    },
-    updatePlayerGroups () {
-      return fetch('https://jambandbackend.herokuapp.com/session', {
-        method: 'PUT',
-        body: JSON.stringify(data),
-        headers: new Headers({
-          'Content-Type': 'application/json'
-        })
-      })
-        .then(res => res.json())
-        .catch(error => console.error('Error:', error))
-    }
   }
 }
 
