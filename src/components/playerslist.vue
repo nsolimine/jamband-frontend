@@ -95,6 +95,10 @@ p {
   flex-direction: column;
 }
 
+.btn {
+  margin: 5px 3px;
+}
+
 .playerCard {
   border: 1px solid black;
   border-radius: 10px;
