@@ -2,32 +2,18 @@
   <div class="sessionDiv">
     <ul>
       <h2>Groups</h2>
-      <li v-for="group in res" :key="group.id">
-        <div class="sessionCard">
-          <div class="top">
-            <h4 class="groupTitle">{{group.title}}</h4>
-            <p>{{group.date | moment("dddd, MMMM Do YYYY")}}</p>
-            <p>{{group.time | moment("h:mm")}}</p>
-            <button class="btn btn-primary" @click='toggle()'>See who's playing!</button>
-          </div>
-          <div class="bottom" v-show="isOpen">
-            <h3 class="playersTitle">Players</h3>
-            <div class="playerInfo" v-for="player in group.players" :key="player.id">
-              <p class="playerName">{{player.name}}</p>
-              <p>Instrument: {{player.instrument}}</p>
-              <p>Do you sing? {{player.sing}}<p>
-              <p>Time checked in: {{player.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a")}}</p>
-            </div>
-          </div>
-        </div>
-      </li>
+      <groupCard v-for="group in res" :key="group.id" :group ='group'/>
     </ul>
   </div>
 </template>
 
 <script>
+import groupCard from './groupCard.vue'
 export default {
   name: 'Session',
+  components: {
+    groupCard
+  },
   data () {
     return {
       res: [],

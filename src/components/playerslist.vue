@@ -13,19 +13,19 @@
             <p>Add to a group!</p>
             <div class="addButtons">
               <div class="topRow">
-                <button type="button" class="btn btn-outline-primary">Group 1</button>
-                <button type="button" class="btn btn-outline-secondary">Group 2</button>
-                <button type="button" class="btn btn-outline-success">Group 3</button>
+                <button @click="toggleGroup1()" type="button" :class="{'btn btn-outline-primary': !group1Toggle, 'btn1clicked btn': group1Toggle }">Group 1</button>
+                <button @click="toggleGroup2()" type="button" :class="{'btn btn-outline-secondary': !group2Toggle, 'btn2clicked btn': group2Toggle }">Group 2</button>
+                <button @click="toggleGroup3()" type="button" :class="{'btn btn-outline-success': !group3Toggle, 'btn3clicked btn': group3Toggle }">Group 3</button>
               </div>
               <div class="bottomRow">
-                <button type="button" class="btn btn-outline-info">Group 4</button>
-                <button type="button" class="btn btn-outline-warning">Group 5</button>
-                <button type="button" class="btn btn-outline-danger">Group 6</button>
+                <button @click="toggleGroup4()" type="button" :class="{'btn btn-outline-info': !group4Toggle, 'btn4clicked btn': group4Toggle }">Group 4</button>
+                <button @click="toggleGroup5()" type="button" :class="{'btn btn-outline-warning': !group5Toggle, 'btn5clicked btn': group5Toggle }">Group 5</button>
+                <button @click="toggleGroup6()" type="button" :class="{'btn btn-outline-danger': !group6Toggle, 'btn6clicked btn': group6Toggle }">Group 6</button>
               </div>
             </div>
           </div>
           <div class="updateAndDelete">
-            <button type="button" class="btn btn-outline-primary">Update</button>
+            <button @click="updatePlayerGroups()" type="button" class="btn btn-outline-primary">Update</button>
             <button @click="remove(player.id)" type="button" class="btn btn-outline-secondary">Delete</button>
           </div>
         </div>
@@ -39,7 +39,13 @@ export default {
   name: 'Playerslist',
   data () {
     return {
-      players: []
+      players: [],
+      group1Toggle: false,
+      group2Toggle: false,
+      group3Toggle: false,
+      group4Toggle: false,
+      group5Toggle: false,
+      group6Toggle: false
     }
   },
   mounted () {
@@ -60,6 +66,46 @@ export default {
       return fetch('https://jambandbackend.herokuapp.com/' + 'players/' + index, {
         method: 'DELETE'
       })
+    },
+    getPlayerGroups () {
+      return fetch('https://jambandbackend.herokuapp.com/session', {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      })
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+    },
+    updatePlayerGroups () {
+      return fetch('https://jambandbackend.herokuapp.com/session', {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      })
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+    },
+    toggleGroup1: function () {
+      this.group1Toggle = !this.group1Toggle
+    },
+    toggleGroup2: function () {
+      this.group2Toggle = !this.group2Toggle
+    },
+    toggleGroup3: function () {
+      this.group3Toggle = !this.group3Toggle
+    },
+    toggleGroup4: function () {
+      this.group4Toggle = !this.group4Toggle
+    },
+    toggleGroup5: function () {
+      this.group5Toggle = !this.group5Toggle
+    },
+    toggleGroup6: function () {
+      this.group6Toggle = !this.group6Toggle
     }
   }
 }
@@ -98,6 +144,32 @@ p {
 .btn {
   margin: 5px 3px;
 }
+
+.btn1clicked {
+  background: #BC8B07;
+}
+
+.btn2clicked {
+  background: #789394;
+}
+
+.btn3clicked {
+  background: #07A7A0;
+}
+
+.btn4clicked {
+  background: #0388DA;
+}
+
+.btn5clicked {
+  background: #E33401;
+}
+
+.btn6clicked {
+  background:	#E50478;
+}
+
+
 
 .playerCard {
   border: 5px solid black;
