@@ -7,6 +7,7 @@
           <h4>{{group.title}}</h4>
           <p>{{group.date}}</p>
           <p>{{group.time}}</p>
+          <h3>Players</h3>
           <div class="playerInfo" v-for="player in group.players" :key="player.id">
             <p class="playerName">{{player.name}}</p>
             <p>Instrument: {{player.instrument}}</p>
@@ -55,6 +56,10 @@ p {
   border: 1px solid black;
   padding: 1rem 1rem 0 1rem;
   margin-bottom: 1rem;
+}
+
+.playerName {
+  font-size: 1.5rem;
 }
 
 ul {
