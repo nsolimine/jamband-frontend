@@ -68,4 +68,62 @@ export default {
 
 <style scoped>
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+p {
+  font-size: 1.25rem;
+}
+
+.playerName {
+  font-size: 1.5rem;
+  color: silver;
+}
+
+.addButtons {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  margin: 5px 3px;
+}
+
+.btn1clicked {
+  background: #BC8B07;
+}
+
+.btn2clicked {
+  background: #789394;
+}
+
+.btn3clicked {
+  background: #07A7A0;
+}
+
+.btn4clicked {
+  background: #0388DA;
+}
+
+.btn5clicked {
+  background: #E33401;
+}
+
+.btn6clicked {
+  background: #E50478;
+}
+
+.playerCard {
+  border: 5px solid black;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
 </style>
