@@ -21,6 +21,7 @@ export default {
 
 .headerDiv {
   border: 1px solid black;
+  border-radius: 10px;
   display: flex;
   flex-direction: row;
   justify-content: center;

@@ -7,7 +7,7 @@
           <p class="playerName">{{player.name}}</p>
           <p>Instrument: {{player.instrument}}</p>
           <p>Do you sing? {{player.sing}}</p>
-          <p>Time checked in: {{player.created_at}}</p>
+          <p>Time checked in: {{player.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a")}}</p>
           <p>Do you have friends you'd like to play with? {{player.friends}}</p>
           <div class="addButtonContainer">
             <p>Add to a group</p>
@@ -87,6 +87,7 @@ p {
 
 .playerName {
   font-size: 1.5rem;
+  color: silver;
 }
 
 .addButtons {
@@ -96,6 +97,7 @@ p {
 
 .playerCard {
   border: 1px solid black;
+  border-radius: 10px;
   padding: 1rem;
   margin-bottom: 1rem;
 }

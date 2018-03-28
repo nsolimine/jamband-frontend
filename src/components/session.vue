@@ -4,15 +4,20 @@
       <h2>Groups</h2>
       <li v-for="group in res" :key="group.id">
         <div class="sessionCard">
-          <h4>{{group.title}}</h4>
-          <p>{{group.date}}</p>
-          <p>{{group.time}}</p>
-          <h3>Players</h3>
-          <div class="playerInfo" v-for="player in group.players" :key="player.id">
-            <p class="playerName">{{player.name}}</p>
-            <p>Instrument: {{player.instrument}}</p>
-            <p>Do you sing? {{player.sing}}<p>
-            <p>Time checked in: {{player.created_at}}</p>
+          <div class="top">
+            <h4 class="groupTitle">{{group.title}}</h4>
+            <p>{{group.date | moment("dddd, MMMM Do YYYY")}}</p>
+            <p>{{group.time | moment("h:mm")}}</p>
+            <button class="btn btn-primary" @click='toggle()'>Expand</button>
+          </div>
+          <div class="bottom" v-show="isOpen">
+            <h3 class="playersTitle">Players</h3>
+            <div class="playerInfo" v-for="player in group.players" :key="player.id">
+              <p class="playerName">{{player.name}}</p>
+              <p>Instrument: {{player.instrument}}</p>
+              <p>Do you sing? {{player.sing}}<p>
+              <p>Time checked in: {{player.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a")}}</p>
+            </div>
           </div>
         </div>
       </li>
@@ -25,7 +30,8 @@ export default {
   name: 'Session',
   data () {
     return {
-      res: []
+      res: [],
+      isOpen: false
     }
   },
   mounted () {
@@ -37,6 +43,11 @@ export default {
           return res
         })
       })
+  },
+  methods: {
+    toggle: function () {
+      this.isOpen = !this.isOpen
+    }
   }
 }
 
@@ -54,12 +65,30 @@ p {
 
 .sessionCard {
   border: 1px solid black;
-  padding: 1rem 1rem 0 1rem;
+  border-radius: 10px;
+  padding: 1rem;
   margin-bottom: 1rem;
 }
 
 .playerName {
   font-size: 1.5rem;
+  color: silver;
+}
+
+.playersTitle {
+  color: #F00183;
+}
+
+.groupTitle {
+  color: orange;
+}
+
+.hidden {
+  display: none;
+}
+
+.bottom {
+  padding: 1rem 0;
 }
 
 ul {
