@@ -10,7 +10,7 @@
           <p>Time checked in: {{player.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a")}}</p>
           <p>Do you have friends you'd like to play with? {{player.friends}}</p>
           <div class="addButtonContainer">
-            <p>Add to a group</p>
+            <p>Add to a group!</p>
             <div class="addButtons">
               <div class="topRow">
                 <button type="button" class="btn btn-outline-primary">Group 1</button>
