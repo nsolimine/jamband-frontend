@@ -17,7 +17,6 @@ export default {
   data () {
     return {
       res: [],
-      isOpen: false
     }
   },
   mounted () {
@@ -29,11 +28,6 @@ export default {
           return res
         })
       })
-  },
-  methods: {
-    toggle: function () {
-      this.isOpen = !this.isOpen
-    }
   }
 }
 
@@ -45,44 +39,4 @@ h2 {
   color: #0586D0;
 }
 
-p {
-  font-size: 1.25rem;
-}
-
-.sessionCard {
-  border: 5px solid black;
-  border-radius: 10px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
-
-.playerName {
-  font-size: 1.5rem;
-  color: silver;
-}
-
-.playersTitle {
-  color: #F00183;
-}
-
-.groupTitle {
-  color: orange;
-}
-
-.hidden {
-  display: none;
-}
-
-.bottom {
-  padding: 1rem 0;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  list-style-type: none;
-}
 </style>
