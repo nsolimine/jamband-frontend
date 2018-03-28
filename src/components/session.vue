@@ -2,7 +2,7 @@
   <div class="sessionDiv">
     <ul>
       <h2>Groups</h2>
-      <groupCard v-for="group in res" :key="group.id" :group ='group'/>
+      <groupCard v-for="group in res" :key="group.id" :group = 'group'/>
     </ul>
   </div>
 </template>

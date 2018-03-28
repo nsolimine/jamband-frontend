@@ -2,41 +2,18 @@
   <div class="playersDiv">
     <ul id="players-list">
       <h2>Players</h2>
-      <li v-for="player in players" :key='player.id'>
-        <div class="playerCard">
-          <p class="playerName">{{player.name}}</p>
-          <p>Instrument: {{player.instrument}}</p>
-          <p>Do you sing? {{player.sing}}</p>
-          <p>Time checked in: {{player.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a")}}</p>
-          <p>Do you have friends you'd like to play with? {{player.friends}}</p>
-          <div class="addButtonContainer">
-            <p>Add to a group!</p>
-            <div class="addButtons">
-              <div class="topRow">
-                <button @click="toggleGroup1()" type="button" :class="{'btn btn-outline-primary': !group1Toggle, 'btn1clicked btn': group1Toggle }">Group 1</button>
-                <button @click="toggleGroup2()" type="button" :class="{'btn btn-outline-secondary': !group2Toggle, 'btn2clicked btn': group2Toggle }">Group 2</button>
-                <button @click="toggleGroup3()" type="button" :class="{'btn btn-outline-success': !group3Toggle, 'btn3clicked btn': group3Toggle }">Group 3</button>
-              </div>
-              <div class="bottomRow">
-                <button @click="toggleGroup4()" type="button" :class="{'btn btn-outline-info': !group4Toggle, 'btn4clicked btn': group4Toggle }">Group 4</button>
-                <button @click="toggleGroup5()" type="button" :class="{'btn btn-outline-warning': !group5Toggle, 'btn5clicked btn': group5Toggle }">Group 5</button>
-                <button @click="toggleGroup6()" type="button" :class="{'btn btn-outline-danger': !group6Toggle, 'btn6clicked btn': group6Toggle }">Group 6</button>
-              </div>
-            </div>
-          </div>
-          <div class="updateAndDelete">
-            <button @click="updatePlayerGroups()" type="button" class="btn btn-outline-primary">Update</button>
-            <button @click="remove(player.id)" type="button" class="btn btn-outline-secondary">Delete</button>
-          </div>
-        </div>
-      </li>
+      <playerCard v-for="player in players" :key='player.id' :player = 'player'/>
     </ul>
   </div>
 </template>
 
 <script>
+import playerCard from './playerCard.vue'
 export default {
   name: 'Playerslist',
+  components: {
+    playerCard
+  },
   data () {
     return {
       players: [],
@@ -166,10 +143,8 @@ p {
 }
 
 .btn6clicked {
-  background:	#E50478;
+  background: #E50478;
 }
-
-
 
 .playerCard {
   border: 5px solid black;
