@@ -61,6 +61,14 @@ export default {
     },
     toggleGroup6: function () {
       this.group6Toggle = !this.group6Toggle
+    },
+    remove (id) {
+      this.deletePlayer(id)
+    },
+    deletePlayer (index) {
+      return fetch('https://jambandbackend.herokuapp.com/' + 'players/' + index, {
+        method: 'DELETE'
+      })
     }
   }
 }

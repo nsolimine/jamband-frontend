@@ -30,14 +30,6 @@ export default {
       })
   },
   methods: {
-    remove (id) {
-      this.deletePlayer(id)
-    },
-    deletePlayer (index) {
-      return fetch('https://jambandbackend.herokuapp.com/' + 'players/' + index, {
-        method: 'DELETE'
-      })
-    },
     getPlayerGroups () {
       return fetch('https://jambandbackend.herokuapp.com/session', {
         method: 'PUT',
