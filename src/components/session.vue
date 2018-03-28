@@ -64,7 +64,7 @@ p {
 }
 
 .sessionCard {
-  border: 1px solid black;
+  border: 5px solid black;
   border-radius: 10px;
   padding: 1rem;
   margin-bottom: 1rem;

@@ -20,7 +20,7 @@ export default {
 <style scoped>
 
 .headerDiv {
-  border: 1px solid black;
+  border: 5px solid black;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
