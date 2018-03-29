@@ -58,7 +58,7 @@ export default {
 <style>
 
 h2 {
-  color: #0586D0;
+  color: #fb6500;
 }
 
 label {
@@ -77,6 +77,10 @@ textarea {
   border: 5px solid black;
   border-radius: 10px;
   padding: 1rem;
+  background-color: #01394b;
+  -webkit-box-shadow: -7px 6px 42px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: -7px 6px 42px 1px rgba(0,0,0,0.75);
+  box-shadow: -7px 6px 42px 1px rgba(0,0,0,0.75);
 }
 
 .submit {

@@ -10,14 +10,14 @@
         <p>Add to a group!</p>
         <div class="addButtons">
           <div class="topRow">
-            <button @click="toggleGroup1()" type="button" :class="{'btn btn-outline-primary': !group1Toggle, 'btn1clicked btn': group1Toggle }">Group 1</button>
-            <button @click="toggleGroup2()" type="button" :class="{'btn btn-outline-secondary': !group2Toggle, 'btn2clicked btn': group2Toggle }">Group 2</button>
-            <button @click="toggleGroup3()" type="button" :class="{'btn btn-outline-success': !group3Toggle, 'btn3clicked btn': group3Toggle }">Group 3</button>
+            <button @click="toggleGroup1()" type="button" :class="{'btn btn-outline-primary': !toggle.group1Toggle, 'btn1clicked btn': toggle.group1Toggle }">Group 1</button>
+            <button @click="toggleGroup2()" type="button" :class="{'btn btn-outline-secondary': !toggle.group2Toggle, 'btn2clicked btn': toggle.group2Toggle }">Group 2</button>
+            <button @click="toggleGroup3()" type="button" :class="{'btn btn-outline-success': !toggle.group3Toggle, 'btn3clicked btn': toggle.group3Toggle }">Group 3</button>
           </div>
           <div class="bottomRow">
-            <button @click="toggleGroup4()" type="button" :class="{'btn btn-outline-info': !group4Toggle, 'btn4clicked btn': group4Toggle }">Group 4</button>
-            <button @click="toggleGroup5()" type="button" :class="{'btn btn-outline-warning': !group5Toggle, 'btn5clicked btn': group5Toggle }">Group 5</button>
-            <button @click="toggleGroup6()" type="button" :class="{'btn btn-outline-danger': !group6Toggle, 'btn6clicked btn': group6Toggle }">Group 6</button>
+            <button @click="toggleGroup4()" type="button" :class="{'btn btn-outline-info': !toggle.group4Toggle, 'btn4clicked btn': toggle.group4Toggle }">Group 4</button>
+            <button @click="toggleGroup5()" type="button" :class="{'btn btn-outline-warning': !toggle.group5Toggle, 'btn5clicked btn': toggle.group5Toggle }">Group 5</button>
+            <button @click="toggleGroup6()" type="button" :class="{'btn btn-outline-danger': !toggle.group6Toggle, 'btn6clicked btn': toggle.group6Toggle }">Group 6</button>
           </div>
         </div>
       </div>
@@ -35,39 +35,71 @@ export default {
   props: ['player'],
   data () {
     return {
-      group1Toggle: false,
-      group2Toggle: false,
-      group3Toggle: false,
-      group4Toggle: false,
-      group5Toggle: false,
-      group6Toggle: false,
+      toggle: {
+        group1Toggle: false,
+        group2Toggle: false,
+        group3Toggle: false,
+        group4Toggle: false,
+        group5Toggle: false,
+        group6Toggle: false
+      },
       players: {
+        id: '',
         name: '',
         instrument: '',
         sing: '',
         created_at: '',
-        session: ''
+        session: {
+          id: '',
+          title: '',
+          date: '',
+          time: '',
+          players_id: '',
+          session_id: ''
+        }
       }
     }
   },
+  mounted () {
+    this.player.session.forEach(session => {
+      if (session.title === 'Group 1') {
+        this.toggle.group1Toggle = true
+      }
+      if (session.title === 'Group 2') {
+        this.toggle.group2Toggle = true
+      }
+      if (session.title === 'Group 3') {
+        this.toggle.group3Toggle = true
+      }
+      if (session.title === 'Group 4') {
+        this.toggle.group4Toggle = true
+      }
+      if (session.title === 'Group 5') {
+        this.toggle.group5Toggle = true
+      }
+      if (session.title === 'Group 6') {
+        this.toggle.group6Toggle = true
+      }
+    })
+  },
   methods: {
     toggleGroup1: function () {
-      this.group1Toggle = !this.group1Toggle
+      this.toggle.group1Toggle = !this.toggle.group1Toggle
     },
     toggleGroup2: function () {
-      this.group2Toggle = !this.group2Toggle
+      this.toggle.group2Toggle = !this.toggle.group2Toggle
     },
     toggleGroup3: function () {
-      this.group3Toggle = !this.group3Toggle
+      this.toggle.group3Toggle = !this.toggle.group3Toggle
     },
     toggleGroup4: function () {
-      this.group4Toggle = !this.group4Toggle
+      this.toggle.group4Toggle = !this.toggle.group4Toggle
     },
     toggleGroup5: function () {
-      this.group5Toggle = !this.group5Toggle
+      this.toggle.group5Toggle = !this.toggle.group5Toggle
     },
     toggleGroup6: function () {
-      this.group6Toggle = !this.group6Toggle
+      this.toggle.group6Toggle = !this.toggle.group6Toggle
     },
     remove (id) {
       this.deletePlayer(id)
@@ -77,18 +109,13 @@ export default {
         method: 'DELETE'
       })
     },
-    getPlayerGroups (data) {
-      return fetch('https://jambandbackend.herokuapp.com/session', {
-        method: 'PUT',
-        body: JSON.stringify(data),
-        headers: new Headers({
-          'Content-Type': 'application/json'
-        })
-      })
-        .then(res => res.json())
-        .catch(error => console.error('Error:', error))
-    },
     handleUpdate (event) {
+      var joinedGroup = []
+      this.toggle.forEach((group, index) => {
+        if (group === true) {
+
+        }
+      })
       this.updatePlayerGroups(this.players)
       this.players = {
         name: '',
@@ -171,6 +198,10 @@ p {
   border-radius: 10px;
   padding: 1rem;
   margin-bottom: 1rem;
+  background-color: #01394b;
+  -webkit-box-shadow: -7px 6px 62px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: -7px 6px 62px 1px rgba(0,0,0,0.75);
+  box-shadow: -7px 6px 62px 1px rgba(0,0,0,0.75);
 }
 
 </style>

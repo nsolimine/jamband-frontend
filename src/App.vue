@@ -37,7 +37,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   padding-top: 2rem;
-  color: #01A59B;
+  color: #01b2a6;
 }
 
 #features {

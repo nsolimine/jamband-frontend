@@ -48,6 +48,10 @@ p {
   border-radius: 10px;
   padding: 1rem;
   margin-bottom: 1rem;
+  background-color: #01394b;
+  -webkit-box-shadow: -7px 6px 42px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: -7px 6px 42px 1px rgba(0,0,0,0.75);
+  box-shadow: -7px 6px 42px 1px rgba(0,0,0,0.75);
 }
 
 .playerName {
