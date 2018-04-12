@@ -117,7 +117,12 @@ export default {
         var findGroup = this.player.session.find((group) => {
           return group.title === `Group ${index + 1}`
         })
-        console.log(findGroup)
+        if (!findGroup && this.toggle[group]) {
+          return fetch('https://jambandbackend.herokuapp.com/purgatory', {
+            method: 'POST',
+            body: JSON.stringify({ players_id: player.id })
+          })
+        }
       })
       this.updatePlayerGroups(this.players)
       this.players = {

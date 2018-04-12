@@ -25,7 +25,6 @@
 export default {
   name: 'groupCard',
   props: ['group'],
-  player: ['group.player'],
   data () {
     return {
       isOpen: false
@@ -36,12 +35,10 @@ export default {
       this.isOpen = !this.isOpen
     },
     remove (id) {
-      id = this.group.players.players_id
-      console.log(id)
       this.deletePlayer(id)
     },
     deletePlayer (index) {
-      return fetch('https://jambandbackend.herokuapp.com/' + 'session/' + index, {
+      return fetch('https://jambandbackend.herokuapp.com/' + 'purgatory/' + index, {
         method: 'DELETE'
       })
     }
