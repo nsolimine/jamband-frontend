@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="updateAndDelete">
-        <button @click="updatePlayerGroups()" type="button" class="btn btn-outline-primary">Update</button>
+        <button @click="handleUpdate()" type="button" class="btn btn-outline-primary">Update</button>
         <button @click="remove(player.id)" type="button" class="btn btn-outline-secondary">Delete</button>
       </div>
     </div>
@@ -49,14 +49,15 @@ export default {
         instrument: '',
         sing: '',
         created_at: '',
-        session: {
+        friends: '',
+        session: [{
           id: '',
           title: '',
           date: '',
           time: '',
           players_id: '',
           session_id: ''
-        }
+        }]
       }
     }
   },
@@ -110,11 +111,13 @@ export default {
       })
     },
     handleUpdate (event) {
-      var joinedGroup = []
-      this.toggle.forEach((group, index) => {
-        if (group === true) {
-
-        }
+      var makeGroup = Object.keys(this.toggle)
+      console.log(makeGroup)
+      makeGroup.forEach((group, index) => {
+        var findGroup = this.player.session.find((group) => {
+          return group.title === `Group ${index + 1}`
+        })
+        console.log(findGroup)
       })
       this.updatePlayerGroups(this.players)
       this.players = {

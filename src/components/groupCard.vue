@@ -14,6 +14,7 @@
           <p>Instrument: {{player.instrument}}</p>
           <p>Do you sing? {{player.sing}}<p>
           <p>Time checked in: {{player.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a")}}</p>
+          <button @click="remove(player.id)" type="button" class="btn btn-outline-info">Remove from group</button>
         </div>
       </div>
     </div>
@@ -24,6 +25,7 @@
 export default {
   name: 'groupCard',
   props: ['group'],
+  player: ['group.player'],
   data () {
     return {
       isOpen: false
@@ -32,6 +34,16 @@ export default {
   methods: {
     toggle: function () {
       this.isOpen = !this.isOpen
+    },
+    remove (id) {
+      id = this.group.players.players_id
+      console.log(id)
+      this.deletePlayer(id)
+    },
+    deletePlayer (index) {
+      return fetch('https://jambandbackend.herokuapp.com/' + 'session/' + index, {
+        method: 'DELETE'
+      })
     }
   }
 }
@@ -73,6 +85,10 @@ p {
 
 .bottom {
   padding: 1rem 0;
+}
+
+.btn-outline-info {
+  margin-bottom: 0.75rem;
 }
 
 ul {
