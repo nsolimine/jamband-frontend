@@ -10,7 +10,7 @@
         <p>Add to a group!</p>
         <div class="addButtons">
           <div class="topRow">
-            <button v-for='group in res' @click="toggleGroup1()" type="button" :class="{'btn btn-outline-primary': !toggle.group1Toggle, 'btn1clicked btn': toggle.group1Toggle }">{{group.title}}</button>
+            <button v-for='group in res' :key='group.id' @click="toggleGroup()" type="button" :class="{'btn btn-outline-primary': !toggle, 'btn1clicked btn': toggle }">{{group.title}}</button>
           </div>
         </div>
       </div>
@@ -28,14 +28,7 @@ export default {
   props: ['player', 'res'],
   data () {
     return {
-      toggle: {
-        group1Toggle: false,
-        group2Toggle: false,
-        group3Toggle: false,
-        group4Toggle: false,
-        group5Toggle: false,
-        group6Toggle: false
-      },
+      toggle: false,
       players: {
         id: '',
         name: '',
@@ -56,44 +49,18 @@ export default {
   },
   mounted () {
     this.player.session.forEach(session => {
-      if (session.title === 'Group 1') {
-        this.toggle.group1Toggle = true
-      }
-      if (session.title === 'Group 2') {
-        this.toggle.group2Toggle = true
-      }
-      if (session.title === 'Group 3') {
-        this.toggle.group3Toggle = true
-      }
-      if (session.title === 'Group 4') {
-        this.toggle.group4Toggle = true
-      }
-      if (session.title === 'Group 5') {
-        this.toggle.group5Toggle = true
-      }
-      if (session.title === 'Group 6') {
-        this.toggle.group6Toggle = true
-      }
+      console.log(session, "session")
+      this.res.forEach(groupName => {
+        console.log(groupName, "groupName")
+        if (session.title === groupName.title) {
+          this.toggle = true
+        }
+      })
     })
   },
   methods: {
-    toggleGroup1: function () {
-      this.toggle.group1Toggle = !this.toggle.group1Toggle
-    },
-    toggleGroup2: function () {
-      this.toggle.group2Toggle = !this.toggle.group2Toggle
-    },
-    toggleGroup3: function () {
-      this.toggle.group3Toggle = !this.toggle.group3Toggle
-    },
-    toggleGroup4: function () {
-      this.toggle.group4Toggle = !this.toggle.group4Toggle
-    },
-    toggleGroup5: function () {
-      this.toggle.group5Toggle = !this.toggle.group5Toggle
-    },
-    toggleGroup6: function () {
-      this.toggle.group6Toggle = !this.toggle.group6Toggle
+    toggleGroup: function () {
+      this.toggle = !this.toggle
     },
     remove (id) {
       this.deletePlayer(id)
