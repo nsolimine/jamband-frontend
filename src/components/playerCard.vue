@@ -10,14 +10,7 @@
         <p>Add to a group!</p>
         <div class="addButtons">
           <div class="topRow">
-            <button @click="toggleGroup1()" type="button" :class="{'btn btn-outline-primary': !toggle.group1Toggle, 'btn1clicked btn': toggle.group1Toggle }">Group 1</button>
-            <button @click="toggleGroup2()" type="button" :class="{'btn btn-outline-secondary': !toggle.group2Toggle, 'btn2clicked btn': toggle.group2Toggle }">Group 2</button>
-            <button @click="toggleGroup3()" type="button" :class="{'btn btn-outline-success': !toggle.group3Toggle, 'btn3clicked btn': toggle.group3Toggle }">Group 3</button>
-          </div>
-          <div class="bottomRow">
-            <button @click="toggleGroup4()" type="button" :class="{'btn btn-outline-info': !toggle.group4Toggle, 'btn4clicked btn': toggle.group4Toggle }">Group 4</button>
-            <button @click="toggleGroup5()" type="button" :class="{'btn btn-outline-warning': !toggle.group5Toggle, 'btn5clicked btn': toggle.group5Toggle }">Group 5</button>
-            <button @click="toggleGroup6()" type="button" :class="{'btn btn-outline-danger': !toggle.group6Toggle, 'btn6clicked btn': toggle.group6Toggle }">Group 6</button>
+            <button v-for='group in res' @click="toggleGroup1()" type="button" :class="{'btn btn-outline-primary': !toggle.group1Toggle, 'btn1clicked btn': toggle.group1Toggle }">{{group.title}}</button>
           </div>
         </div>
       </div>
@@ -32,7 +25,7 @@
 <script>
 export default {
   name: 'playerCard',
-  props: ['player'],
+  props: ['player', 'res'],
   data () {
     return {
       toggle: {
