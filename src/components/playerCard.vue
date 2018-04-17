@@ -10,7 +10,7 @@
         <p>Add to a group!</p>
         <div class="addButtons">
           <div class="topRow">
-            <button v-for='group in res' :key='group.id' @click="toggleGroup()" type="button" :class="{'btn btn-outline-primary': !toggle, 'btn1clicked btn': toggle }">{{group.title}}</button>
+            <button v-for='group in res' :key='group.id' @click="toggle[group.title] = !toggle[group.title]" type="button" :class="{'btn btn-outline-primary': !toggle[group.title], 'btn btn1clicked': toggle[group.title] }">{{group.title}}</button>
           </div>
         </div>
       </div>
@@ -25,10 +25,11 @@
 <script>
 export default {
   name: 'playerCard',
-  props: ['player', 'res'],
+  props: ['player'],
   data () {
     return {
-      toggle: false,
+      toggle: {},
+      res: [],
       players: {
         id: '',
         name: '',
@@ -48,19 +49,27 @@ export default {
     }
   },
   mounted () {
-    this.player.session.forEach(session => {
-      console.log(session, "session")
-      this.res.forEach(groupName => {
-        console.log(groupName, "groupName")
-        if (session.title === groupName.title) {
-          this.toggle = true
-        }
+    const sessionAPI = 'https://jambandbackend.herokuapp.com/' + 'session'
+    fetch(sessionAPI)
+      .then(response => response.json())
+      .then(res => {
+        this.res = res.res.map(res => {
+          this.toggle[res.title] = false
+          return res
+        })
+        this.player.session.forEach(session => {
+          this.res.forEach(groupName => {
+            if (session.title === groupName.title) {
+              this.toggle[groupName.title] = true
+            }
+          })
+        })
       })
-    })
   },
   methods: {
-    toggleGroup: function () {
-      this.toggle = !this.toggle
+    toggleGroup (title) {
+      console.log(title)
+      this.toggle[title] = !this.toggle[title]
     },
     remove (id) {
       this.deletePlayer(id)
@@ -69,41 +78,41 @@ export default {
       return fetch('https://jambandbackend.herokuapp.com/' + 'players/' + index, {
         method: 'DELETE'
       })
-    },
-    handleUpdate (event) {
-      var makeGroup = Object.keys(this.toggle)
-      console.log(makeGroup)
-      makeGroup.forEach((group, index) => {
-        var findGroup = this.player.session.find((group) => {
-          return group.title === `Group ${index + 1}`
-        })
-        if (!findGroup && this.toggle[group]) {
-          return fetch('https://jambandbackend.herokuapp.com/purgatory', {
-            method: 'POST',
-            body: JSON.stringify({ players_id: player.id })
-          })
-        }
-      })
-      this.updatePlayerGroups(this.players)
-      this.players = {
-        name: '',
-        instrument: '',
-        sing: '',
-        created_at: '',
-        session: ''
-      }
-    },
-    updatePlayerGroups (data) {
-      return fetch('https://jambandbackend.herokuapp.com/session', {
-        method: 'PUT',
-        body: JSON.stringify(data),
-        headers: new Headers({
-          'Content-Type': 'application/json'
-        })
-      })
-        .then(res => res.json())
-        .catch(error => console.error('Error:', error))
     }
+  //   handleUpdate (event) {
+  //     var makeGroup = Object.keys(this.toggle)
+  //     console.log(makeGroup)
+  //     makeGroup.forEach((group, index) => {
+  //       var findGroup = this.player.session.find((group) => {
+  //         return group.title === `Group ${index + 1}`
+  //       })
+  //       if (!findGroup && this.toggle[group]) {
+  //         return fetch('https://jambandbackend.herokuapp.com/purgatory', {
+  //           method: 'POST',
+  //           body: JSON.stringify({ players_id: player.id })
+  //         })
+  //       }
+  //     })
+  //     this.updatePlayerGroups(this.players)
+  //     this.players = {
+  //       name: '',
+  //       instrument: '',
+  //       sing: '',
+  //       created_at: '',
+  //       session: ''
+  //     }
+  //   },
+  //   updatePlayerGroups (data) {
+  //     return fetch('https://jambandbackend.herokuapp.com/session', {
+  //       method: 'PUT',
+  //       body: JSON.stringify(data),
+  //       headers: new Headers({
+  //         'Content-Type': 'application/json'
+  //       })
+  //     })
+  //       .then(res => res.json())
+  //       .catch(error => console.error('Error:', error))
+  //   }
   }
 }
 </script>
