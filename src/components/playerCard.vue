@@ -9,8 +9,8 @@
       <div class="addButtonContainer">
         <p>Add to a group!</p>
         <div class="addButtons">
-          <div class="topRow">
-            <button v-for='group in res' :key='group.id' @click="toggle[group.title] = !toggle[group.title]" type="button" :class="{'btn btn-outline-primary': !toggle[group.title], 'btn btn1clicked': toggle[group.title] }">{{group.title}}</button>
+          <div v-inject:toggle="toggle" class="topRow">
+            <button v-for='group in res' :value="toggle[group.id]" :key='group.id' @click="toggleGroup(group.id)" type="button" :class="{'btn btn1clicked': toggle[group.id], 'btn btn-outline-primary': !toggle[group.id] }">{{group.title}}</button>
           </div>
         </div>
       </div>
@@ -54,22 +54,23 @@ export default {
       .then(response => response.json())
       .then(res => {
         this.res = res.res.map(res => {
-          this.toggle[res.title] = false
+          this.toggle[res.id] = false
           return res
         })
         this.player.session.forEach(session => {
           this.res.forEach(groupName => {
             if (session.title === groupName.title) {
-              this.toggle[groupName.title] = true
+              this.toggle[groupName.id] = true
             }
           })
         })
       })
   },
   methods: {
-    toggleGroup (title) {
-      console.log(title)
-      this.toggle[title] = !this.toggle[title]
+    toggleGroup (id) {
+      // this.toggle[id] = !this.toggle[id]
+      this.$set(this.toggle, id, !this.toggle[id])
+      console.log(id, this.toggle[id])
     },
     remove (id) {
       this.deletePlayer(id)
