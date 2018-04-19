@@ -9,7 +9,7 @@
       <div class="addButtonContainer">
         <p>Add to a group!</p>
         <div class="addButtons">
-          <div v-inject:toggle="toggle" class="topRow">
+          <div class="topRow">
             <button v-for='group in res' :value="toggle[group.id]" :key='group.id' @click="toggleGroup(group.id)" type="button" :class="{'btn btn1clicked': toggle[group.id], 'btn btn-outline-primary': !toggle[group.id] }">{{group.title}}</button>
           </div>
         </div>
