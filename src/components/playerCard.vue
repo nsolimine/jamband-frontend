@@ -54,7 +54,7 @@ export default {
       .then(response => response.json())
       .then(res => {
         this.res = res.res.map(res => {
-          this.toggle[res.id] = false
+          this.$set(this.toggle, res.id, false)
           return res
         })
         this.player.session.forEach(session => {
@@ -68,9 +68,7 @@ export default {
   },
   methods: {
     toggleGroup (id) {
-      // this.toggle[id] = !this.toggle[id]
       this.$set(this.toggle, id, !this.toggle[id])
-      console.log(id, this.toggle[id])
     },
     remove (id) {
       this.deletePlayer(id)
