@@ -30,21 +30,9 @@ export default {
     return {
       toggle: {},
       res: [],
-      players: {
-        id: '',
-        name: '',
-        instrument: '',
-        sing: '',
-        created_at: '',
-        friends: '',
-        session: [{
-          id: '',
-          title: '',
-          date: '',
-          time: '',
-          players_id: '',
-          session_id: ''
-        }]
+      addPlayers: {
+        players_id: '',
+        session_id: ''
       }
     }
   },
@@ -77,41 +65,25 @@ export default {
       return fetch('https://jambandbackend.herokuapp.com/' + 'players/' + index, {
         method: 'DELETE'
       })
+    },
+    handleUpdate (event) {
+      this.updatePlayerGroups(this.addPlayers)
+      this.addPlayers = {
+        players_id: '',
+        session_id: ''
+      }
+    },
+    updatePlayerGroups (data) {
+      return fetch('https://jambandbackend.herokuapp.com/purgatory', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      })
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
     }
-  //   handleUpdate (event) {
-  //     var makeGroup = Object.keys(this.toggle)
-  //     console.log(makeGroup)
-  //     makeGroup.forEach((group, index) => {
-  //       var findGroup = this.player.session.find((group) => {
-  //         return group.title === `Group ${index + 1}`
-  //       })
-  //       if (!findGroup && this.toggle[group]) {
-  //         return fetch('https://jambandbackend.herokuapp.com/purgatory', {
-  //           method: 'POST',
-  //           body: JSON.stringify({ players_id: player.id })
-  //         })
-  //       }
-  //     })
-  //     this.updatePlayerGroups(this.players)
-  //     this.players = {
-  //       name: '',
-  //       instrument: '',
-  //       sing: '',
-  //       created_at: '',
-  //       session: ''
-  //     }
-  //   },
-  //   updatePlayerGroups (data) {
-  //     return fetch('https://jambandbackend.herokuapp.com/session', {
-  //       method: 'PUT',
-  //       body: JSON.stringify(data),
-  //       headers: new Headers({
-  //         'Content-Type': 'application/json'
-  //       })
-  //     })
-  //       .then(res => res.json())
-  //       .catch(error => console.error('Error:', error))
-  //   }
   }
 }
 </script>
